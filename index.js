@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 app.get('/cookie/:productClicked', (req, res) => {
   const { productClicked } = req.params;
   const clickArray = appendClickArray(req, productClicked);
-  res.cookie('productClick', clickArray, { maxAge: 900000 });
+  res.cookie('productClick', clickArray, { maxAge: 900000, sameSite: 'none' });
   res.send('OK');
 });
 const PORT = process.env.PORT || 80;
