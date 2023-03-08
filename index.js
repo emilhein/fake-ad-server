@@ -11,16 +11,7 @@ app.use(
     credentials: true,
   })
 );
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Credentials', true);
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json'
-//   );
-//   next();
-// });
+
 //Cors Configuration - End
 
 const appendClickArray = (req, clickedProduct) => {
@@ -35,7 +26,10 @@ const appendClickArray = (req, clickedProduct) => {
   return cookies.productClick;
 };
 app.get('/', (req, res) => {
-  // console.log('Cookies: ', req.cookies);
+  res.send('OK');
+});
+app.get('/ad', (req, res) => {
+  console.log;
   res.send('OK');
 });
 
@@ -45,8 +39,9 @@ app.get('/cookie/:productClicked', (req, res) => {
   res.cookie('productClick', clickArray, {
     maxAge: 900000,
     sameSite: 'none',
-    domain: 'fake-ad-server.herokuapp.com',
+    domain: '.fake-ad-server.herokuapp.com',
     secure: true,
+    path: '/interrests',
   });
   res.send('OK');
 });
