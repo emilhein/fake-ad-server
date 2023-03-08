@@ -10,7 +10,6 @@ app.use(
   })
 );
 
-const port = 80;
 const appendClickArray = (req, clickedProduct) => {
   const cookies = req.cookies;
   if (!cookies.productClick) {
@@ -33,7 +32,9 @@ app.get('/cookie/:productClicked', (req, res) => {
   res.cookie('productClick', clickArray, { maxAge: 900000, httpOnly: true });
   res.send('OK');
 });
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+const PORT = process.env.PORT || 80;
+var server = app.listen(PORT, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('server is listening at http://%s:%s', host, port);
 });
