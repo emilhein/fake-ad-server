@@ -38,7 +38,7 @@ app.get('/cookie/:productClicked', (req, res) => {
   const { productClicked } = req.params;
   const clickArray = appendClickArray(req, productClicked);
   res.cookie('productClick', clickArray, {
-    maxAge: 900000,
+    maxAge: 1000 * 60 * 60 * 24 * 30,
     sameSite: 'none',
     domain: '.fake-ad-server.herokuapp.com',
     secure: true,

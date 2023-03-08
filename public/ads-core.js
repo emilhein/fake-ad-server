@@ -9,3 +9,4 @@ const setCookie = (name, value, days) => {
   document.cookie = name + '=' + (value || '') + expires + '; path=/';
 };
 setCookie('youlike', 'somehing', 30);
+console.log('cookie has been set');
