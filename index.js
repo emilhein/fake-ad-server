@@ -7,7 +7,8 @@ app.use(cookieParser());
 //Cors Configuration - Start
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin:
+      'https://vitejsvitepgoxmv-ye3p--5173.local-credentialless.webcontainer.io/',
     credentials: true,
   })
 );
