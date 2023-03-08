@@ -24,7 +24,7 @@ const appendClickArray = (req, clickedProduct) => {
 };
 app.get('/', (req, res) => {
   console.log('Cookies: ', req.cookies);
-  res.send(JSON.stringify(res.cookies));
+  res.send('OK');
 });
 
 app.get('/cookie/:productClicked', (req, res) => {
