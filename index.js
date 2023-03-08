@@ -5,7 +5,10 @@ const app = express();
 app.use(cookieParser());
 //Cors Configuration - Start
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Origin',
+    'https://vitejsvitepgoxmv-ye3p--5173.local-credentialless.webcontainer.io/'
+  );
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested, Content-Type, Accept Authorization'
