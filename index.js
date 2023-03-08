@@ -7,7 +7,7 @@ app.use(cookieParser());
 app.use((req, res, next) => {
   res.header(
     'Access-Control-Allow-Origin',
-    'https://vitejsvitepgoxmv-ye3p--5173.local-credentialless.webcontainer.io/'
+    'https://vitejsvitepgoxmv-ye3p--5173.local-credentialless.webcontainer.io'
   );
   res.header(
     'Access-Control-Allow-Headers',
