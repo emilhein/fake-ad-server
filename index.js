@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-
-let cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
+
+app.use(express.static('public'));
 app.use(cookieParser());
 //Cors Configuration - Start
 app.use(
