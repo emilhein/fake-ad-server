@@ -42,7 +42,7 @@ app.get('/cookie/:productClicked', (req, res) => {
     sameSite: 'none',
     domain: '.fake-ad-server.herokuapp.com',
     secure: true,
-    path: '/interrests',
+    path: '/',
   });
   res.send('OK');
 });
