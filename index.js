@@ -38,6 +38,7 @@ app.get('/cookie/:productClicked', (req, res) => {
   res.cookie('productClick', clickArray, {
     maxAge: 900000,
     sameSite: 'none',
+    domain: 'https://fake-ad-server.herokuapp.com/',
     secure: true,
   });
   res.send('OK');
