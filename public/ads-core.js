@@ -2,7 +2,7 @@ console.log('I am the ads core script');
 
 globalThis.fakeAdserver = {
   insertAdIntoDiv(id) {
-    fetch(`https://fake-ad-server.herokuapp.com/ad`, ,{
+    fetch(`https://fake-ad-server.herokuapp.com/ad`,{
       credentials: 'include' 
     })
       .then((res) => res.text())
