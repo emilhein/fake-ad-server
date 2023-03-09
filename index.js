@@ -30,8 +30,12 @@ app.get('/', (req, res) => {
   res.send('OK');
 });
 app.get('/ad', (req, res) => {
-  console.log;
-  res.send('OK2');
+  const adPaths = {
+    cars: 'ads/cars.html',
+    phones: 'ads/phones.html',
+  };
+  console.log(res);
+  res.send(adPaths.cars);
 });
 
 app.get('/cookie/:productClicked', (req, res) => {
