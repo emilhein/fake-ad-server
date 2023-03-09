@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const app = express();
-
+const { appendClickArray, setCookieInResponse } = require('./helpers/cookies');
+const { selectAdBasedOnCookie } = require('./helpers/adSelector');
 app.use(express.static('public'));
 app.use(cookieParser());
 //Cors Configuration - Start
@@ -15,38 +16,12 @@ app.use(
 
 //Cors Configuration - End
 
-const appendClickArray = (req, key, clickedProduct) => {
-  const cookies = req.cookies;
-  if (!cookies.key) {
-    return clickedProduct;
-  }
-
-  if (!cookies[key].includes(clickedProduct)) {
-    return `${cookies[key]},${clickedProduct}`;
-  }
-  return cookies[key];
-};
-
-const setCookieInResponse = (res, key, value) => {
-  res.cookie(key, value, {
-    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
-    sameSite: 'none',
-    domain: '.fake-ad-server.herokuapp.com',
-    secure: true,
-    path: '/',
-  });
-};
 app.get('/', (req, res) => {
   res.send('OK');
 });
 app.get('/ad', (req, res) => {
-  const adPaths = {
-    cars: 'ads/cars.html',
-    phones: 'ads/phones.html',
-  };
-  const { productClick, productViewed } = res.cookies;
-  console.log(productClick, productViewed);
-  res.send(adPaths.cars);
+  const adIframeUrl = selectAdBasedOnCookie(req);
+  res.send(adIframeUrl);
 });
 
 app.get('/productClicked/:productClicked', (req, res) => {
