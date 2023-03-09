@@ -1,14 +1,12 @@
-exports.appendClickArray = (req, res, key, clickedProduct) => {
+exports.appendClickArray = (req, res, key, item) => {
   const cookies = req.cookies;
-  const cookiesres = res.cookies;
   console.log('getting req', cookies);
-  console.log('getting res', cookiesres);
-  if (!cookies.key) {
-    return clickedProduct;
+  if (!cookies[key]) {
+    return item;
   }
 
-  if (!cookies[key].includes(clickedProduct)) {
-    return `${cookies[key]},${clickedProduct}`;
+  if (!cookies[key].includes(item)) {
+    return `${cookies[key]},${item}`;
   }
   return cookies[key];
 };
