@@ -10,6 +10,7 @@ const adPaths = {
 
 exports.selectAdBasedOnCookie = (req, res) => {
   const { productClick } = req.cookies;
+  console.log(req.cookies);
   let ads = Object.keys(adPaths);
   const randomElement = ads[Math.floor(Math.random() * ads.length)];
 
