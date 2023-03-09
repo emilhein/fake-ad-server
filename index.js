@@ -25,7 +25,6 @@ app.get('/ad', (req, res) => {
 });
 
 app.get('/productClicked/:productClicked', (req, res) => {
-  console.log(res)
   const { productClicked } = req.params;
   const clickArray = appendClickArray(req, 'productClicked', productClicked);
   setCookieInResponse(res, 'productClick', clickArray);
