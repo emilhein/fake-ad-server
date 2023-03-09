@@ -14,6 +14,6 @@ exports.selectAdBasedOnCookie = (req, res) => {
   let ads = Object.keys(adPaths);
   const randomElement = ads[Math.floor(Math.random() * ads.length)];
 
-  console.log('Based on', productClick, 'we seelct', randomElement);
+  console.log('Based on', productClicked, 'we seelct', randomElement);
   return adPaths[randomElement];
 };
