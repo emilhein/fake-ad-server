@@ -26,13 +26,13 @@ app.get('/ad', (req, res) => {
 
 app.get('/productClicked/:productClicked', (req, res) => {
   const { productClicked } = req.params;
-  const clickArray = appendClickArray(req, 'productClicked', productClicked);
+  const clickArray = appendClickArray(req, res, 'productClicked', productClicked);
   setCookieInResponse(res, 'productClicked', clickArray);
   res.send('OK');
 });
 app.get('/productViewed/:productViewed', (req, res) => {
   const { productViewed } = req.params;
-  const viewArray = appendClickArray(req, 'productViewed', productViewed);
+  const viewArray = appendClickArray(req, res, 'productViewed', productViewed);
   setCookieInResponse(res, 'productViewed', viewArray);
   res.send('OK');
 });

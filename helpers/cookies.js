@@ -1,5 +1,8 @@
-exports.appendClickArray = (req, key, clickedProduct) => {
+exports.appendClickArray = (req, res, key, clickedProduct) => {
   const cookies = req.cookies;
+  const cookiesres = res.cookies;
+  console.log('getting req', cookies);
+  console.log('getting res', cookiesres);
   if (!cookies.key) {
     return clickedProduct;
   }
