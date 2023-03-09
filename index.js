@@ -31,14 +31,14 @@ app.get('/', (req, res) => {
 });
 app.get('/ad', (req, res) => {
   console.log;
-  res.send('OK');
+  res.send('OK2');
 });
 
 app.get('/cookie/:productClicked', (req, res) => {
   const { productClicked } = req.params;
   const clickArray = appendClickArray(req, productClicked);
   res.cookie('productClick', clickArray, {
-    maxAge: 1000 * 60 * 60 * 24 * 30,
+    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
     sameSite: 'none',
     domain: '.fake-ad-server.herokuapp.com',
     secure: true,
