@@ -15,16 +15,26 @@ app.use(
 
 //Cors Configuration - End
 
-const appendClickArray = (req, clickedProduct) => {
+const appendClickArray = (req, key, clickedProduct) => {
   const cookies = req.cookies;
-  if (!cookies.productClick) {
+  if (!cookies.key) {
     return clickedProduct;
   }
 
-  if (!cookies.productClick.includes(clickedProduct)) {
-    return `${cookies.productClick},${clickedProduct}`;
+  if (!cookies[key].includes(clickedProduct)) {
+    return `${cookies[key]},${clickedProduct}`;
   }
-  return cookies.productClick;
+  return cookies[key];
+};
+
+const setCookieInResponse = (res, key, value) => {
+  res.cookie(key, value, {
+    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
+    sameSite: 'none',
+    domain: '.fake-ad-server.herokuapp.com',
+    secure: true,
+    path: '/',
+  });
 };
 app.get('/', (req, res) => {
   res.send('OK');
@@ -34,20 +44,21 @@ app.get('/ad', (req, res) => {
     cars: 'ads/cars.html',
     phones: 'ads/phones.html',
   };
-  console.log(res);
+  const { productClick, productViewed } = res.cookies;
+  console.log(productClick, productViewed);
   res.send(adPaths.cars);
 });
 
-app.get('/cookie/:productClicked', (req, res) => {
+app.get('/productClicked/:productClicked', (req, res) => {
   const { productClicked } = req.params;
-  const clickArray = appendClickArray(req, productClicked);
-  res.cookie('productClick', clickArray, {
-    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
-    sameSite: 'none',
-    domain: '.fake-ad-server.herokuapp.com',
-    secure: true,
-    path: '/',
-  });
+  const clickArray = appendClickArray(req, 'productClicked', productClicked);
+  setCookieInResponse(res, 'productClick', clickArray);
+  res.send('OK');
+});
+app.get('/productViewed/:productViewed', (req, res) => {
+  const { productViewed } = req.params;
+  const viewArray = appendClickArray(req, 'productViewed', productViewed);
+  setCookieInResponse(res, 'productViewed', viewArray);
   res.send('OK');
 });
 const PORT = process.env.PORT || 80;
