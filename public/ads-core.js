@@ -4,10 +4,10 @@ globalThis.fakeAdserver = {
   insertAdIntoDiv(id) {
     fetch(`https://fake-ad-server.herokuapp.com/ad`)
       .then((res) => res.text())
-      .then((url) => {
+      .then((path) => {
         const iframe = document.createElement('iframe');
         iframe.style.display = 'none';
-        iframe.src = url;
+        iframe.src = `https://fake-ad-server.herokuapp.com/${path}`;
         let element = document.getElementById(id);
         element.appendChild(iframe);
         console.log('Ad inserted');
