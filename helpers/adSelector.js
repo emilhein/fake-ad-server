@@ -8,7 +8,7 @@ const adPaths = {
   motorola_phones: 'ads/motorola.html',
 };
 
-exports.selectAdBasedOnCookie = (req) => {
+exports.selectAdBasedOnCookie = (req, res) => {
   const { productClick } = res.cookies;
   let ads = Object.keys(adPaths);
   const randomElement = ads[Math.floor(Math.random() * ads.length)];

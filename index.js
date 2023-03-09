@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   res.send('OK');
 });
 app.get('/ad', (req, res) => {
-  const adIframeUrl = selectAdBasedOnCookie(req);
+  const adIframeUrl = selectAdBasedOnCookie(req, res);
   res.send(adIframeUrl);
 });
 
