@@ -27,7 +27,7 @@ app.get('/ad', (req, res) => {
 app.get('/productClicked/:productClicked', (req, res) => {
   const { productClicked } = req.params;
   const clickArray = appendClickArray(req, 'productClicked', productClicked);
-  setCookieInResponse(res, 'productClick', clickArray);
+  setCookieInResponse(res, 'productClicked', clickArray);
   res.send('OK');
 });
 app.get('/productViewed/:productViewed', (req, res) => {
