@@ -3,18 +3,10 @@
 <html>
   <img src="https://fake-ad-server.herokuapp.com/productClicked/phones"></img>
   <!-- <img src="https://fake-ad-server.herokuapp.com/productClicked/high_end_phones"></src> -->
-  <body></body>
-
+  <body>
+    <img src="./../img/phones.jpg" />
+  </body>
   <script>
-    const  setCookie = (name,value,days) => {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-setCookie('user_seen', 'phones', 30)
+
   </script>
 </html>
