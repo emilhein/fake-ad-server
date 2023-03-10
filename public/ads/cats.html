@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 
 <html>
-  <img src="https://fake-ad-server.herokuapp.com/productClicked/cats" />
+  <img
+    style="display: none"
+    src="https://fake-ad-server.herokuapp.com/productClicked/cats"
+  />
 
   <body>
-    <img src="./../img/cat.jpg" />
+    <img id="ad" src="./../img/cat.jpg" />
   </body>
 </html>
+<style>
+  img#ad {
+    height: 320px;
+    width: 320px;
+    object-fit: contain;
+  }
+</style>

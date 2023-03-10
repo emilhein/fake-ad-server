@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 
 <html>
-  <img src="https://fake-ad-server.herokuapp.com/productClicked/cars"></img>
-  <img src="https://fake-ad-server.herokuapp.com/productClicked/luxury_cars"></img>
+  <img      style="display: none"   src="https://fake-ad-server.herokuapp.com/productClicked/cars"></img>
+  <img      style="display: none"   src="https://fake-ad-server.herokuapp.com/productClicked/luxury_cars"></img>
   <body>
-    <img src="./../img/car.jpg" />
+    <img id="ad" src="./../img/car.jpg" />
   </body>
   <script>
 
   </script>
 </html>
+<style>
+  img#ad {
+    height: 320px;
+    width: 320px;
+    object-fit: contain;
+  }
+</style>

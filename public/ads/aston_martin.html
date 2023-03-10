@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 
 <html>
-  <img src="https://fake-ad-server.herokuapp.com/productClicked/aston_martin" />
+  <img
+    style="display: none"
+    src="https://fake-ad-server.herokuapp.com/productClicked/aston_martin"
+  />
 
   <body>
-    <img src="./../img/aston_martin.jpg" />
+    <img id="ad" src="./../img/aston_martin.jpg" />
   </body>
 </html>
+<style>
+  img#ad {
+    height: 320px;
+    width: 320px;
+    object-fit: contain;
+  }
+</style>

@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 
 <html>
-  <img src="https://fake-ad-server.herokuapp.com/productClicked/motorola" />
+  <img
+    style="display: none"
+    src="https://fake-ad-server.herokuapp.com/productClicked/motorola"
+  />
 
   <body>
-    <img src="./../img/motorola.jpg" />
+    <img id="ad" src="./../img/motorola.jpg" />
   </body>
 </html>
+<style>
+  img#ad {
+    height: 320px;
+    width: 320px;
+    object-fit: contain;
+  }
+</style>

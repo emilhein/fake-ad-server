@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 
 <html>
-  <img src="https://fake-ad-server.herokuapp.com/productClicked/phones"></img>
+  <img     style="display: none"      src="https://fake-ad-server.herokuapp.com/productClicked/phones"></img>
   <!-- <img src="https://fake-ad-server.herokuapp.com/productClicked/high_end_phones"></src> -->
   <body>
-    <img src="./../img/phones.jpg" />
+    <img id="ad" src="./../img/phones.jpg" />
   </body>
   <script>
 
   </script>
 </html>
+<style>
+  img#ad {
+    height: 320px;
+    width: 320px;
+    object-fit: contain;
+  }
+</style>

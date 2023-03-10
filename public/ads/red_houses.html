@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 
 <html>
-  <img src="https://fake-ad-server.herokuapp.com/productClicked/red_houses" />
+  <img
+    style="display: none"
+    src="https://fake-ad-server.herokuapp.com/productClicked/red_houses"
+  />
 
   <body>
-    <img src="./../img/red_house.jpg" />
+    <img id="ad" src="./../img/red_house.jpg" />
   </body>
 </html>
+<style>
+  img#ad {
+    height: 320px;
+    width: 320px;
+    object-fit: contain;
+  }
+</style>
