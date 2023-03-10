@@ -5,26 +5,33 @@ const adPaths = {
   phones: 'ads/phones.html',
   red_houses: 'ads/red_houses.html',
   aston_martin: 'ads/aston_martin.html',
-  motorola_phones: 'ads/motorola.html',
+  motorola: 'ads/motorola.html',
 };
 const randomAd = () => {
   const ads = Object.keys(adPaths);
   const randomElement = ads[Math.floor(Math.random() * ads.length)];
   return adPaths[randomElement];
 };
-const adFromClicked = (productClicked) => {
-  const adsClicked = productClicked.split(',');
-};
-const adFromViewed = (productViewed) => {
-  const adsViewed = productViewed.split(',');
+
+const adselectorAndFrequency = (cookieString) => {
+  const adsViewed = cookieString.split(',');
+  let availableAds = adsViewed.filter((ad) => {
+    const [_, count] = ad.split('=');
+    return count <= 5;
+  });
+  if (availableAds.length > 0) {
+    return adPaths[availableAds[0].split('=')[0]];
+  } else {
+    return randomAd();
+  }
 };
 exports.selectAdBasedOnCookie = (req, res) => {
   const { productClicked, productViewed } = req.cookies;
   let returnAdUrl = null;
   if (productClicked) {
-    returnAdUrl = adFromClicked(productClicked);
+    returnAdUrl = adselectorAndFrequency(productClicked);
   } else if (productViewed) {
-    returnAdUrl = adFromViewed(productViewed);
+    returnAdUrl = adselectorAndFrequency(productViewed);
   } else {
     returnAdUrl = randomAd();
   }
