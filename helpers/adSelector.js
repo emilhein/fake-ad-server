@@ -37,8 +37,10 @@ const clickSelector = (productClickedArray, productViewedArray) => {
         let name = viewed.split('=')[0];
         return name === adname;
       });
-
-      return parseInt(foundViewed.split('=')[1]) < 5;
+      if (foundViewed) {
+        return parseInt(foundViewed.split('=')[1]) < 5;
+      }
+      return true;
     }
   );
 
