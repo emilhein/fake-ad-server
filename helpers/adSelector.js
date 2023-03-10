@@ -16,7 +16,7 @@ const randomAd = () => {
 const getCountUnderX = (array, maxCount) =>
   array.filter((ad) => {
     const [_, count] = ad.split('=');
-    return count <= maxCount;
+    return count < maxCount;
   });
 
 const viewSelector = (productViewedArray) => {
@@ -38,7 +38,7 @@ const clickSelector = (productClickedArray, productViewedArray) => {
         return name === adname;
       });
 
-      return parseInt(foundViewed.split('=')[1]) <= 5;
+      return parseInt(foundViewed.split('=')[1]) < 5;
     }
   );
 
