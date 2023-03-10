@@ -1,14 +1,22 @@
-exports.appendClickArray = (req, res, key, item) => {
+exports.appendCookiesString = (req, res, key, item) => {
   const cookies = req.cookies;
   console.log('getting req', cookies);
   if (!cookies[key]) {
-    return item;
+    return `${item}=1`;
+  } else {
+    if (!cookies[key].includes(item)) {
+      return `${cookies[key]},${item}=1`;
+    } else {
+      const stringParts = cookies[key].split(',');
+      const addedCount = stringParts
+        .map((part) => {
+          const [name, count] = part.split('=');
+          return `${name}=${parseInt(count) + 1}`;
+        })
+        .join(',');
+      return addedCount;
+    }
   }
-
-  if (!cookies[key].includes(item)) {
-    return `${cookies[key]},${item}`;
-  }
-  return cookies[key];
 };
 
 exports.setCookieInResponse = (res, key, value) => {

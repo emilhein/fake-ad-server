@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const app = express();
-const { appendClickArray, setCookieInResponse } = require('./helpers/cookies');
+const { appendCookiesString, setCookieInResponse } = require('./helpers/cookies');
 const { selectAdBasedOnCookie } = require('./helpers/adSelector');
 app.use(express.static('public'));
 app.use(cookieParser());
@@ -26,14 +26,14 @@ app.get('/ad', (req, res) => {
 
 app.get('/productClicked/:productClicked', (req, res) => {
   const { productClicked } = req.params;
-  const clickArray = appendClickArray(req, res, 'productClicked', productClicked);
-  setCookieInResponse(res, 'productClicked', clickArray);
+  const clickString = appendCookiesString(req, res, 'productClicked', productClicked);
+  setCookieInResponse(res, 'productClicked', clickString);
   res.send('OK');
 });
 app.get('/productViewed/:productViewed', (req, res) => {
   const { productViewed } = req.params;
-  const viewArray = appendClickArray(req, res, 'productViewed', productViewed);
-  setCookieInResponse(res, 'productViewed', viewArray);
+  const viewString = appendCookiesString(req, res, 'productViewed', productViewed);
+  setCookieInResponse(res, 'productViewed', viewString);
   res.send('OK');
 });
 const PORT = process.env.PORT || 80;
