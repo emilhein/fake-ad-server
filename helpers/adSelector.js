@@ -32,7 +32,7 @@ const viewSelector = (productViewedArray) => {
 const clickSelector = (productClickedArray, productViewedArray) => {
   let availableAds = getCountUnderX(productClickedArray, 5).filter(
     (valuePart) => {
-      const [adname] = ad.split('=');
+      const [adname] = valuePart.split('=');
       let foundViewed = productViewedArray.find((viewed) => {
         let name = viewed.split('=')[0];
         return name === adname;
