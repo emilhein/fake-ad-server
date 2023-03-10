@@ -13,25 +13,51 @@ const randomAd = () => {
   return adPaths[randomElement];
 };
 
-const adselectorAndFrequency = (cookieString) => {
-  const adsViewed = cookieString.split(',');
-  let availableAds = adsViewed.filter((ad) => {
+const getCountUnderX = (array, maxCount) =>
+  array.filter((ad) => {
     const [_, count] = ad.split('=');
-    return count <= 5;
+    return count <= maxCount;
   });
+
+const viewSelector = (productViewedArray) => {
+  let availableAds = getCountUnderX(productViewedArray, 5);
+  if (availableAds.length > 0) {
+    return adPaths[availableAds[0].split('=')[0]];
+  } else {
+    return randomAd();
+    F;
+  }
+};
+
+const clickSelector = (productClickedArray, productViewedArray) => {
+  let availableAds = getCountUnderX(productClickedArray, 5).filter(
+    (valuePart) => {
+      const [adname] = ad.split('=');
+      let foundViewed = productViewedArray.find((viewed) => {
+        let name = viewed.split('=')[0];
+        return name === adname;
+      });
+
+      return parseInt(foundViewed.split('=')[1]) <= 5;
+    }
+  );
+
   if (availableAds.length > 0) {
     return adPaths[availableAds[0].split('=')[0]];
   } else {
     return randomAd();
   }
 };
+
 exports.selectAdBasedOnCookie = (req, res) => {
   const { productClicked, productViewed } = req.cookies;
+  const productClickedArray = productClicked ? productClicked.split(',') : [];
+  const productViewedArray = productViewed ? productViewed.split(',') : [];
   let returnAdUrl = null;
   if (productClicked) {
-    returnAdUrl = adselectorAndFrequency(productClicked);
+    returnAdUrl = clickSelector(productClickedArray, productViewedArray);
   } else if (productViewed) {
-    returnAdUrl = adselectorAndFrequency(productViewed);
+    returnAdUrl = viewSelector(productViewedArray);
   } else {
     returnAdUrl = randomAd();
   }
